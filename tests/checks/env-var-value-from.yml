@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dont-fire
+spec:
+  template:
+    spec:
+      containers:
+        - name: app
+          env:
+            - name: BLAH
+              valueFrom:
+                secretKeyRef:
+                  name: secretsquirrels
+                  key: chimpmunk
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secretsquirrels
+stringData:
+  chimpmun: "aaaaaaa"
